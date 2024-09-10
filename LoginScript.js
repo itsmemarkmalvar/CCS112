@@ -11,26 +11,38 @@ function toggleForm() {
     }
 }
 
-function login(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+function register(event) {
+    event.preventDefault();
     
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    
-    // Here you would typically send these credentials to a server for verification
-    // For this example, we'll just check if both fields are filled
-    if (username && password) {
-        // Redirect to the dashboard
-        window.location.href = 'Dashboard.html';
-    } else {
-        alert('Please enter both username and password');
-    }
+    const form = document.getElementById('registrationForm');
+    const formData = new FormData(form);
+
+    fetch('Register.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log('Server response:', result);
+        if (result.trim() === "Registration successful") {
+            alert("Registration successful!");
+            form.reset(); // Clear the registration form
+            toggleForm(); // Switch back to login form
+        } else {
+            alert(result || 'An unexpected error occurred.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred during registration: ' + error.message);
+    });
 }
 
-// Add event listener when the DOM is fully loaded
+// Add this event listener to ensure the function is connected to the form
 document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', login);
+    const registerForm = document.getElementById('registrationForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', register);
     }
 });
+
