@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Registration</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div id="loginForm">
+            <h2>Login</h2>
+            <form onsubmit="login(event)">
+                <div class="input-container">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="input-container">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="toggle">
+                Don't have an account? <a href="#" onclick="toggleForm()">Register</a>
+            </div>
+        </div>
+        
+        <div id="registerForm">
+            <h2>Register</h2>
+            <form>
+                <div class="input-container">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="input-container">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" required>
+                </div>
+                <div class="input-container">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <div class="input-container">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <div class="toggle">
+                Already have an account? <a href="#" onclick="toggleForm()">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="LoginScript.js"></script>
+</body>
+</html>
