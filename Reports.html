@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Account Dashboard</title>
+    <link rel="stylesheet" href="DashboardStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body id="reports-page" data-page="reports">
+    <div class="dashboard">
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-user-shield"></i>
+                <span>Account Monitor</span>
+            </div>
+            <ul>
+                <li><a href="Dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="Users.php"><i class="fas fa-users"></i> Users</a></li>
+                <li class="active"><a href="Reports.html"><i class="fas fa-file-alt"></i> Reports</a></li>
+                <li><a href="Settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+            <div class="logout-container">
+                <a href="LoginForm.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </nav>
+        <main class="content">
+            <header>
+                <h1>Reports</h1>
+                <div class="user-info">
+                    <span>Admin User</span>
+                    <img src="https://via.placeholder.com/40" alt="Admin" class="avatar">
+                </div>
+            </header>
+            <div class="reports-container">
+                <div class="report-card">
+                    <div class="report-icon"><i class="fas fa-user-clock"></i></div>
+                    <h2>User Activity Report</h2>
+                    <p>View detailed user activity logs including login times, actions performed, and session durations.</p>
+                    <a href="generate_user_activity_report.php" class="btn btn-primary">Generate PDF Report</a>
+                </div>
+                <div class="report-card">
+                    <div class="report-icon"><i class="fas fa-user-shield"></i></div>
+                    <h2>Account Status Report</h2>
+                    <p>Get an overview of active, inactive, and suspended accounts. Identify trends in account statuses.</p>
+                    <a href="#" class="btn btn-primary">Generate Report</a>
+                </div>
+                <div class="report-card">
+                    <div class="report-icon"><i class="fas fa-lock"></i></div>
+                    <h2>System Access Logs</h2>
+                    <p>Review system access attempts, security logs, and potential security breaches or unusual activities.</p>
+                    <a href="#" class="btn btn-primary">Generate Report</a>
+                </div>
+            </div>
+            <div id="reportContainer"></div>
+        </main>
+    </div>
+    <script src="Users.js"></script>
+    <script src="DashboardScript.js"></script>
+</body>
+</html>

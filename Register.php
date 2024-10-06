@@ -31,24 +31,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Validate passwords match
+    // Check if passwords match
     if ($password !== $confirmPassword) {
         echo "Passwords do not match";
         exit();
     }
 
+    // Check if username already exists
+    $stmt = $conn->prepare("SELECT ID FROM accounts WHERE Username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        echo "Username already exists";
+        exit();
+    }
+    $stmt->close();
+
+    // If we've made it this far, the username is unique
     // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Prepare and bind
+    // Prepare and execute the insert query
     $stmt = $conn->prepare("INSERT INTO accounts (Name, Username, Password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $fullName, $username, $hashedPassword);
-
-    // Execute the statement
+    
     if ($stmt->execute()) {
         echo "Registration successful";
     } else {
-        echo "Registration failed: " . $stmt->error;
+        echo "Error: " . $stmt->error;
     }
 
     // Close statement

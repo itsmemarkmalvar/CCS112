@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2024 at 10:14 AM
+-- Generation Time: Oct 06, 2024 at 07:06 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,29 @@ CREATE TABLE `accounts` (
   `ID` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
   `Username` varchar(100) NOT NULL,
-  `Password` varchar(100) NOT NULL
+  `Password` varchar(100) NOT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`ID`, `Name`, `Username`, `Password`, `CreatedAt`) VALUES
+(4, 'Mark Malvar', 'Admin', '$2y$10$RAB6q3SUy78o6l7ux6uEzers7TtzzQ4d5eJF4ZXcBHikYXrPlMymW', '2024-10-06 04:35:45'),
+(5, 'Mark Malvar', 'Admin1', '$2y$10$1hy11u0pqegwXrUaob0lged3TboABk1RUL3f5cGvxWotbG.Dh4Gky', '2024-10-06 04:35:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_activity`
+--
+
+CREATE TABLE `user_activity` (
+  `ID` int(11) NOT NULL,
+  `Username` varchar(100) NOT NULL,
+  `ActivityDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Action` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -45,6 +67,12 @@ ALTER TABLE `accounts`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `user_activity`
+--
+ALTER TABLE `user_activity`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -52,6 +80,12 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `user_activity`
+--
+ALTER TABLE `user_activity`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
